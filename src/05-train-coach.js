@@ -49,20 +49,83 @@
  */
 export function findPassenger(passengers, name) {
   // Your code here
+  let a = [1, 2]
+
+  console.log(Array.isArray(passengers))
+
+  if (!Array.isArray(passengers) || typeof name !== "string") {
+    console.log("hello")
+    return undefined
+  }
+
+  let result = passengers.find((passenger) => {
+    return passenger.name.toLowerCase() === name.toLowerCase()
+  })
+
+  return result
+
 }
 
 export function getPassengerIndex(passengers, name) {
   // Your code here
+
+  if(!Array.isArray(passengers) || typeof name !=="string"){
+    return -1
+  }
+
+  let index = passengers.findIndex((passenger)=>{
+    return passenger.name.toLowerCase() === name.toLowerCase()
+  })
+
+  return index
+
 }
 
 export function isAnyWaitlisted(passengers) {
   // Your code here
+
+  if(!Array.isArray(passengers)|| passengers.length===0)
+  {
+    return false
+  }
+  let result = passengers.some((passenger)=>{
+    return passenger.status === "waitlisted"
+  })
+
+  return result
+
 }
 
 export function areAllConfirmed(passengers) {
   // Your code here
+
+  if(!Array.isArray(passengers)|| passengers.length===0)
+  {
+    return false
+  }
+
+  let result = passengers.every((passenger)=>{
+    return passenger.status === "confirmed"
+  })
+
+  return result
+
 }
 
 export function getWaitlistedPassengers(passengers) {
   // Your code here
+
+  if(!Array.isArray(passengers))
+  {
+    return []
+  }
+
+  let result = passengers.filter((passenger)=>{
+    return passenger.status === "waitlisted"
+  })
+
+  return result
+
 }
+
+console.log(areAllConfirmed([{ name: "Rahul", coach: "S5", seat: 42, status: "confirmed" },]))

@@ -47,20 +47,80 @@
  */
 export function getChaiOrderLength(order) {
   // Your code here
+  if (typeof order !== "string") {
+    return -1
+  }
+  order = order.trim()
+  return order.length
 }
 
 export function shoutChaiOrder(order) {
   // Your code here
+
+  // console.log(typeof order)
+  if (typeof order !== "string") {
+    return ""
+  }
+  let trimmedOrder = order.trim()
+  if (trimmedOrder === "") {
+    return ""
+  }
+
+  return trimmedOrder.toUpperCase()
+
 }
 
 export function whisperChaiOrder(order) {
   // Your code here
+  if (typeof order !== "string") {
+    return ""
+  }
+  let trimmedOrder = order.trim()
+  if (trimmedOrder === "") {
+    return ""
+  }
+
+  return trimmedOrder.toLowerCase()
+
 }
 
 export function hasSpecialIngredient(order, ingredient) {
   // Your code here
+
+  if (typeof order !== "string" || typeof ingredient !== "string") {
+    return false;
+  }
+
+  let updatedOrder = order.toLowerCase()
+  ingredient = ingredient.toLowerCase()
+  if (updatedOrder.includes(ingredient)) {
+    return true
+  }
+
+  return false
+
 }
 
 export function getFirstAndLastChar(order) {
   // Your code here
+
+  if (typeof order !== "string") {
+    return null
+  }
+  let trimmedOrder = order.trim()
+  if (trimmedOrder === "") {
+    return null
+  }
+  let firstChar = trimmedOrder.charAt(0)
+  let lastChar = trimmedOrder.at(-1)
+
+  let result = {
+    first: firstChar,
+    last: lastChar
+  }
+
+  return result
+
 }
+
+console.log(getFirstAndLastChar("masala chai"))

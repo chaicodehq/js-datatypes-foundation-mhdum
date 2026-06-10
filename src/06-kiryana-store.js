@@ -52,20 +52,88 @@
  */
 export function getItemNames(items) {
   // Your code here
+
+  if(!Array.isArray(items)){
+    return []
+  }
+
+  let itemNames = items.map((item)=>{
+    return item.name
+  })
+
+  return itemNames
+
 }
 
 export function getAffordableItems(items, maxPrice) {
   // Your code here
+
+  if(!Array.isArray(items)|| Number.isNaN(maxPrice)){
+    return []
+  }
+
+  let result = items.filter((item)=>{
+    return item.price<=maxPrice
+  })
+
+  return result
+
+
 }
 
 export function calculateTotal(items) {
   // Your code here
+
+  if(!Array.isArray(items) || items.length===0 ){
+    return 0
+  }
+  return items.reduce((total, item) => {
+    return total + (item.price * item.qty);
+  }, 0);
 }
 
 export function sortByPrice(items, ascending) {
   // Your code here
+
+  if(!Array.isArray(items)){
+    return []
+  }
+  let itemsCopy = [...items]
+
+  if(ascending){
+
+    itemsCopy.sort((a,b)=>{
+      return a.price - b.price
+    })
+  }
+  else{
+     itemsCopy.sort((a,b)=>{
+      return b.price - a.price
+    })
+  }
+
+  return itemsCopy
+
 }
 
 export function formatBill(items) {
   // Your code here
+
+  if(!Array.isArray(items) || items.length===0){
+    return ""
+  }
+
+  let sum = items.map((item)=>{
+    return `${item.name} x ${item.qty} = Rs.${item.price*item.qty}`
+  })
+
+  // result = result.join("\n")
+
+  let result = sum.join("\n")
+
+  return result
+
 }
+
+
+console.log(calculateTotal([{name:"Atta",price:40,qty:2},{name:"Daal",price:80,qty:1}]))

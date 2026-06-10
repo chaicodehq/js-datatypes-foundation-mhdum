@@ -54,20 +54,75 @@
  */
 export function getFamilyNames(registry) {
   // Your code here
+
+  if (typeof registry !== "object" || registry === null || Array.isArray(registry)) {
+    return []
+  }
+
+  let result = Object.keys(registry)
+
+  return result
+
 }
 
 export function getAllFamilies(registry) {
   // Your code here
+
+  if (typeof registry !== "object" || registry === null) {
+    return []
+  }
+
+  let result = Object.values(registry)
+
+  return result
+
 }
 
 export function getRationCardEntries(registry) {
   // Your code here
+
+  if (typeof registry !== "object" || registry === null) {
+    return []
+  }
+
+  let result = Object.entries(registry)
+
+  return result
+
 }
 
 export function hasRationCard(registry, cardId) {
   // Your code here
+
+  if(typeof registry !== "object" || typeof cardId!== "string"|| registry===null){
+    return false
+  }
+
+  let result = registry.hasOwnProperty(cardId)
+
+  return result
+
 }
 
 export function removeRationCard(registry, cardId) {
   // Your code here
+
+  if(typeof registry !== "object" || typeof cardId !== "string" || registry === null){
+    return false
+  }
+
+  if(registry.hasOwnProperty(cardId)){
+    delete registry[cardId]
+
+    return true
+  }
+
+  return false
+
 }
+
+
+console.log(getFamilyNames({
+  "RC001": { head: "Ram Prasad", members: 4, type: "BPL" },
+  "RC002": { head: "Sita Devi", members: 3, type: "APL" },
+}))
